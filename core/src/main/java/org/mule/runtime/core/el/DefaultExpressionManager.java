@@ -34,7 +34,6 @@ import org.mule.runtime.core.api.message.InternalMessage;
 import org.mule.runtime.core.api.registry.RegistrationException;
 import org.mule.runtime.core.api.transformer.TransformerException;
 import org.mule.runtime.core.el.mvel.MVELExpressionLanguage;
-
 import org.mule.runtime.core.util.TemplateParser;
 
 import java.util.Collection;
@@ -46,7 +45,9 @@ import org.slf4j.Logger;
 
 public class DefaultExpressionManager implements ExtendedExpressionManager, Initialisable {
 
-  public static final String MEL_PREFIX = "mel:";
+  public static final String DW_PREFIX = "dw";
+  public static final String MEL_PREFIX = "mel";
+  public static final String PREFIX_EXPR_SEPARATOR = ":";
   private static final Logger logger = getLogger(DefaultExpressionManager.class);
 
   private MuleContext muleContext;
@@ -285,7 +286,7 @@ public class DefaultExpressionManager implements ExtendedExpressionManager, Init
   }
 
   private boolean hasMelExpression(String expression) {
-    return expression.contains(DEFAULT_EXPRESSION_PREFIX + MEL_PREFIX);
+    return expression.contains(DEFAULT_EXPRESSION_PREFIX + MEL_PREFIX + PREFIX_EXPR_SEPARATOR);
   }
 
 }
